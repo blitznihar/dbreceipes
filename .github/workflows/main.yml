@@ -54,3 +54,8 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         shell: bash
+      - name: Codecov
+        uses: codecov/codecov-action@v2.0.3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
