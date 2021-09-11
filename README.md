@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/blitznihar/dbreceipes/tree/master.svg?style=svg)](https://circleci.com/gh/blitznihar/dbreceipes/tree/master)[![Java CI with Maven](https://github.com/blitznihar/dbreceipes/workflows/main.yml/badge.svg)[![codecov](https://github.com/blitznihar/dbreceipes/branch/master/graph/badge.svg)](https://github.com/blitznihar/dbreceipes/)
+[![CircleCI](https://circleci.com/gh/blitznihar/dbreceipes/tree/master.svg?style=svg)](https://circleci.com/gh/blitznihar/dbreceipes/tree/master) [![Java CI with Maven](https://github.com/blitznihar/dbreceipes/workflows/main.yml/badge.svg) [![codecov](https://github.com/blitznihar/dbreceipes/branch/master/graph/badge.svg)](https://github.com/blitznihar/dbreceipes/)
 
 # DB Receipes
 ### Mutiple small poc embedded
