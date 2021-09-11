@@ -1,0 +1,9 @@
+version: 2.1 #2.0 is different
+
+orbs:
+  maven: circleci/maven@0.0.12
+
+workflows:
+  maven_test:
+    jobs:
+      - maven/test
