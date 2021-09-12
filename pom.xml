@@ -19,11 +19,14 @@
 	 </distributionManagement>
 	<groupId>com.blitznihar.restaturants</groupId>
 	<artifactId>dbreceipes</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${revision}${sha1}${changelist}</version>
 	<name>dbreceipes</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>16</java.version>
+		<revision>1.3.1</revision>
+    <changelist>-SNAPSHOT</changelist>
+    <sha1/>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -97,6 +100,32 @@
 
 	<build>
 		<plugins>
+				  <plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>flatten-maven-plugin</artifactId>
+					<version>1.1.0</version>
+					<configuration>
+					  <updatePomFile>true</updatePomFile>
+					  <flattenMode>resolveCiFriendliesOnly</flattenMode>
+					</configuration>
+					<executions>
+					  <execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+						  <goal>flatten</goal>
+						</goals>
+					  </execution>
+					  <execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+						  <goal>clean</goal>
+						</goals>
+					  </execution>
+					</executions>
+				  </plugin>
+				
 			<plugin>
 				<groupId>org.asciidoctor</groupId>
 				<artifactId>asciidoctor-maven-plugin</artifactId>
