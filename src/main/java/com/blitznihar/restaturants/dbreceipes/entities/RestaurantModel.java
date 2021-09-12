@@ -6,6 +6,9 @@ import lombok.Data;
 @Document(collection = "restaurants")
 @Data
 public class RestaurantModel {
+
+    public RestaurantModel() {
+    }
     private String name;
     private String cuisine;
     private String borough;

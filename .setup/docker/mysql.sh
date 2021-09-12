@@ -1,0 +1,1 @@
+docker run --name hb-mysql-example -p 3306:3306 --platform linux/x86_64 -e MYSQL_ROOT_PASSWORD=Buster -d mysql

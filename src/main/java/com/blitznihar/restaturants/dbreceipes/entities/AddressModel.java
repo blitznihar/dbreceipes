@@ -5,6 +5,9 @@ import lombok.Data;
 @Data
 public class AddressModel {
 
+    public AddressModel() {
+    }
+
 private String street;
 private String building;
 private String zipcode;

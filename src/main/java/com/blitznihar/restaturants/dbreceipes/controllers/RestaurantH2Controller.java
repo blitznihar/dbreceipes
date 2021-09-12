@@ -8,6 +8,7 @@ import com.blitznihar.restaturants.dbreceipes.services.RestaurantH2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class RestaurantH2Controller {
     }
 
     @PostMapping("/restaurant")
-    public String insertRestaturants(List<RestaurantModel> restaurantModels){
+    public String insertRestaturants(@RequestBody List<RestaurantModel> restaurantModels){
          return "Records Inserted: "+restaurantH2Service.insertRestaurantAll(restaurantModels);
 
     }
