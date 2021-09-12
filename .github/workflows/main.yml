@@ -47,14 +47,7 @@ jobs:
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
       - name: generate report codecov
         run: mvn cobertura:cobertura
-      - name: Upload coverage
-        if: success()
-        run: |
-          curl -s https://codecov.io/bash | bash
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        shell: bash
-      - name: Codecov
+      - name: Upload coverage Codecov
         uses: codecov/codecov-action@v2.0.3
       - name: Publish to GitHub Packages
         run: mvn --batch-mode deploy
