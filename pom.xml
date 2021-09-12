@@ -19,7 +19,7 @@
 	 </distributionManagement>
 	<groupId>com.blitznihar.restaturants</groupId>
 	<artifactId>dbreceipes</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>dbreceipes</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
