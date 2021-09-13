@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
-import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2Repository;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2.RestaurantH2Repository;
 
 
 
@@ -22,7 +22,7 @@ public class RestaurantH2Service {
     }
 
 	public int insertRestaurantAll(List<RestaurantModel> restaurantModels) {
-        restaurantH2Repository.insertRestaurant(restaurantModels);
+        restaurantH2Repository.saveAll(restaurantModels);
         return restaurantModels.size();
 	}
     

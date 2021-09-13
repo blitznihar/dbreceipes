@@ -2,8 +2,8 @@ package com.blitznihar.restaturants.dbreceipes.services;
 
 import java.util.List;
 
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
-import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2Repository;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2.RestaurantH2Repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -40,7 +40,7 @@ public class RestaurantH2ServiceTest {
 
     @Test
     public void insertRestaurantAll() {
-        when(mockRestaurantH2Repository.insertRestaurant(mockRestaurantModels)).thenReturn("");
+        when(mockRestaurantH2Repository.saveAll(mockRestaurantModels)).thenReturn(mockRestaurantModels);
         assertThat(restaurantH2Service.insertRestaurantAll(mockRestaurantModels)).isNotNegative();
     }
 }

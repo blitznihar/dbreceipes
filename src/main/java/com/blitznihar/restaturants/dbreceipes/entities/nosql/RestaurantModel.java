@@ -1,10 +1,11 @@
-package com.blitznihar.restaturants.dbreceipes.entities;
+package com.blitznihar.restaturants.dbreceipes.entities.nosql;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
-@Document(collection = "restaurants")
+
 @Data
+@Document(collection = "restaurants")
 public class RestaurantModel {
 
     public RestaurantModel() {

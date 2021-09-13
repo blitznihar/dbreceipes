@@ -1,12 +1,12 @@
-package com.blitznihar.restaturants.dbreceipes.repositories;
+package com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2;
 
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.blitznihar.restaturants.dbreceipes.entities.AddressModel;
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.AddressModel;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
 public class RestaurantRowMapper implements RowMapper<RestaurantModel>{
 
     @Override

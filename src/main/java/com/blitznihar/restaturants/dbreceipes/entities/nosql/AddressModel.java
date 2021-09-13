@@ -1,16 +1,15 @@
-package com.blitznihar.restaturants.dbreceipes.entities;
+package com.blitznihar.restaturants.dbreceipes.entities.nosql;
 
 import lombok.Data;
-
 @Data
 public class AddressModel {
 
     public AddressModel() {
     }
 
-private String street;
-private String building;
-private String zipcode;
+    private String street;
+    private String building;
+    private String zipcode;
 
     public AddressModel(String street, String building, String zipcode) {
         this.street = street;

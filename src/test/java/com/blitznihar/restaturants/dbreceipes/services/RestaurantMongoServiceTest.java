@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
-import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantMongoRepository;
+import com.blitznihar.restaturants.dbreceipes.entities.nosql.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantMongo.RestaurantMongoRepository;
 
 
 

@@ -2,7 +2,7 @@ package com.blitznihar.restaturants.dbreceipes.controllers;
 
 import java.util.List;
 
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
 import com.blitznihar.restaturants.dbreceipes.services.RestaurantPostgresqlService;
 
 import org.springframework.beans.factory.annotation.Autowired;

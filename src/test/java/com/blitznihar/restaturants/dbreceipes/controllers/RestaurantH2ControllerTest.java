@@ -1,7 +1,7 @@
 package com.blitznihar.restaturants.dbreceipes.controllers;
 
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
-import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2Repository;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2.RestaurantH2Repository;
 import com.blitznihar.restaturants.dbreceipes.services.RestaurantH2Service;
 
 import java.util.List;
@@ -44,7 +44,7 @@ public class RestaurantH2ControllerTest {
 
     @Test
     public void insertRestaurantAll() {
-        when(mockRestaurantH2Repository.insertRestaurant(mockRestaurantModels)).thenReturn("");
+        when(mockRestaurantH2Repository.saveAll(mockRestaurantModels)).thenReturn(mockRestaurantModels);
         when(restaurantH2Service.insertRestaurantAll(mockRestaurantModels)).thenReturn(0);
         assertThat(restaurantH2Service.insertRestaurantAll(mockRestaurantModels)).isNotNegative();
     }

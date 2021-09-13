@@ -2,7 +2,7 @@ package com.blitznihar.restaturants.dbreceipes.controllers;
 
 import java.util.List;
 
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.entities.nosql.RestaurantModel;
 import com.blitznihar.restaturants.dbreceipes.services.RestaurantMongoService;
 
 
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/mongo")
 public class RestaurantMongoController {
+
 
     @Autowired
     public RestaurantMongoService restaurantMongoService;

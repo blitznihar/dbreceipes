@@ -1,7 +1,7 @@
 package com.blitznihar.restaturants.dbreceipes.controllers;
 
-import com.blitznihar.restaturants.dbreceipes.entities.RestaurantModel;
-import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantMongoRepository;
+import com.blitznihar.restaturants.dbreceipes.entities.nosql.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantMongo.RestaurantMongoRepository;
 import com.blitznihar.restaturants.dbreceipes.services.RestaurantMongoService;
 
 import java.util.List;

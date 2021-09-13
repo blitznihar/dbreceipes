@@ -7,7 +7,17 @@
 
 ##### DB Used
 * [x] H2 DB (/h2-console)
+* [x] PostgreSQL
+* [x] MySQL
+* [ ] MariaDB
+* [x] Microsoft SQL Server
 * [x] MongoDB
+* [ ] Cassandra
+* [ ] Redis
+* [ ] ElasticSearch
+* [ ] FireBase
+* [ ] Apache Derby
+* [ ] LDAP
 
 #### Spring AOP
 * [ ] Aspect
