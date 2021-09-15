@@ -34,7 +34,7 @@ public class MssqlConfig {
     {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        dataSource.setUrl("jdbc:sqlserver://localhost;databaseName=restaurant");
+        dataSource.setUrl("jdbc:sqlserver://localhost;databaseName=restaturant");
         dataSource.setUsername("sa");
         dataSource.setPassword("4321~Drowssap");
         return dataSource;

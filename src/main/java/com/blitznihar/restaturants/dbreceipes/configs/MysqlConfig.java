@@ -35,7 +35,7 @@ public class MysqlConfig {
     {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/mysql");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/Restaurant");
         dataSource.setUsername("root");
         dataSource.setPassword("4321~Drowssap");
         return dataSource;
