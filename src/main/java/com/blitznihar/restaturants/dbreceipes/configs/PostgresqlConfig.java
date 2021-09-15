@@ -38,7 +38,7 @@ public class PostgresqlConfig {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/restaurant");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("docker");
+        dataSource.setPassword("4321~Drowssap");
         return dataSource;
     }
 

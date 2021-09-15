@@ -1,1 +1,1 @@
-docker run --name hb-mysql-example -p 3306:3306 --platform linux/x86_64 -e MYSQL_ROOT_PASSWORD=Buster -d mysql
+docker run --name mysqlv -p 3306:3306 --platform linux/x86_64 -e MYSQL_ROOT_PASSWORD=4321~Drowssap -v /Volumes/D/Workspace/Docker/vol/mysql:/var/lib/mysql -d mysql
