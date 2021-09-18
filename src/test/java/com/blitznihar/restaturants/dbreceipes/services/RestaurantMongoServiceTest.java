@@ -1,7 +1,6 @@
 package com.blitznihar.restaturants.dbreceipes.services;
 
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
@@ -45,6 +44,6 @@ public class RestaurantMongoServiceTest {
     @Test
     public void insertRestaurantAll() {
         when(mockRestaurantMongoRepository.saveAll(mockRestaurantModels)).thenReturn(mockRestaurantModels);
-        assertThat(restaurantMongoService.insertRestaurantAll(mockRestaurantModels)).isGreaterThanOrEqualTo(0);
+        assertThat(restaurantMongoService.insertRestaurantAll(mockRestaurantModels)).isNotNegative();
     }
 }

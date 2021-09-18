@@ -1,14 +1,13 @@
 package com.blitznihar.restaturants.dbreceipes.entities.sql;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import lombok.Data;
 
 
@@ -20,6 +19,7 @@ public class RestaurantModel {
     public RestaurantModel() {
     }
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int restaurantId;
     private String name;
     private String cuisine;
