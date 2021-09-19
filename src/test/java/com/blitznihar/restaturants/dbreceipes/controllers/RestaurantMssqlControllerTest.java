@@ -52,7 +52,13 @@ public class RestaurantMssqlControllerTest {
         when(restaurantMssqlService.getRestaurantAll()).thenReturn(mockRestaurantModels);
         assertEquals(restaurantMssqlController.getRestaturants(), mockRestaurantModels);
     }
-
+    @Test
+    public void insertRestaurantMongoControllerSuccess() throws Exception
+    {
+        //when(mockRestaurantMongoRepository.findAll()).thenReturn(mockRestaurantModels);
+        when(restaurantMssqlService.insertRestaurantAll(mockRestaurantModels)).thenReturn(0);
+        assertEquals(restaurantMssqlController.insertRestaturants(mockRestaurantModels()), "Records Inserted: 0");
+    }
     @Test
     public void get_restaurantMongoController_Success() throws Exception
     {

@@ -54,6 +54,13 @@ public class RestaurantPostgresqlControllerTest {
     }
 
     @Test
+    public void insertRestaurantMongoControllerSuccess() throws Exception
+    {
+        //when(mockRestaurantMongoRepository.findAll()).thenReturn(mockRestaurantModels);
+        when(restaurantPostgresqlService.insertRestaurantAll(mockRestaurantModels)).thenReturn(0);
+        assertEquals(restaurantPostgresqlController.insertRestaturants(mockRestaurantModels()), "Records Inserted: 0");
+    }
+    @Test
     public void get_restaurantMongoController_Success() throws Exception
     {
         when(restaurantPostgresqlService.getRestaurantAll()).thenReturn(mockRestaurantModels());
