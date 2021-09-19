@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.blitznihar.restaturants.dbreceipes.entities.sql.AddressModel;
 import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
-import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantH2.RestaurantH2Repository;
+import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantMssql.RestaurantMssqlRepository;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,13 +22,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 @ExtendWith(MockitoExtension.class)
-public class RestaurantH2ServiceTest {
+public class RestaurantMssqlServiceTest {
     
     @InjectMocks
-    private RestaurantH2Service restaurantH2Service;
+    private RestaurantMssqlService restaurantMssqlService;
 
     @Mock
-    private RestaurantH2Repository restaurantH2Repository;
+    private RestaurantMssqlRepository restaurantMssqlRepository;
     
   
         private List<RestaurantModel> mockRestaurantModels(){
@@ -37,23 +37,23 @@ public class RestaurantH2ServiceTest {
          return result;
     }
     @Test
-    public void mockRestaurantH2Repository_isNotNull() throws Exception
+    public void mockRestaurantMssqlRepository_isNotNull() throws Exception
     {
-        assertThat(restaurantH2Service).isNotNull();
+        assertThat(restaurantMssqlService).isNotNull();
     }
 
     @Test
     public void getRestaurantRepositorySuccess() throws Exception
     {
-        when(restaurantH2Repository.findAll()).thenReturn(mockRestaurantModels());
-        assertEquals(restaurantH2Service.getRestaurantAll(), mockRestaurantModels());
+        when(restaurantMssqlRepository.findAll()).thenReturn(mockRestaurantModels());
+        assertEquals(restaurantMssqlService.getRestaurantAll(), mockRestaurantModels());
     }
 
     @Test
     public void insertRestaurantAll() {
         
-        when(restaurantH2Repository.saveAll(mockRestaurantModels())).thenReturn(mockRestaurantModels());
-        assertThat(restaurantH2Service.insertRestaurantAll(mockRestaurantModels())).isNotNegative();
+        when(restaurantMssqlRepository.saveAll(mockRestaurantModels())).thenReturn(mockRestaurantModels());
+        assertThat(restaurantMssqlService.insertRestaurantAll(mockRestaurantModels())).isNotNegative();
     }
 
 }

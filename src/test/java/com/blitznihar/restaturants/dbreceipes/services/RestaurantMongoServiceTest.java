@@ -1,32 +1,39 @@
 package com.blitznihar.restaturants.dbreceipes.services;
 
-import java.util.List;
-import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import com.blitznihar.restaturants.dbreceipes.entities.nosql.AddressModel;
 import com.blitznihar.restaturants.dbreceipes.entities.nosql.RestaurantModel;
 import com.blitznihar.restaturants.dbreceipes.repositories.RestaurantMongo.RestaurantMongoRepository;
 
 
 
-@SpringBootTest
+
+
+
+@ExtendWith(MockitoExtension.class)
 public class RestaurantMongoServiceTest {
     
-    @Autowired
+    @InjectMocks
     private RestaurantMongoService restaurantMongoService;
 
-    @MockBean
+    @Mock
     private RestaurantMongoRepository mockRestaurantMongoRepository;
 
-    @MockBean
-    private List<RestaurantModel> mockRestaurantModels;
-
-    @MockBean
-    private Iterable<RestaurantModel> mockRestaurantModelsIterable;
+    private List<RestaurantModel> mockRestaurantModels(){
+        List<RestaurantModel> result = new ArrayList<RestaurantModel>();
+        result.add(new RestaurantModel("Wendys","Hamburgers","Brooklyn",new AddressModel("Flatbush Avenue","469","11225")));
+        return result;
+       }
 
     @Test
     public void restaurantMongoRepositoryIsNotNull() throws Exception
@@ -34,16 +41,16 @@ public class RestaurantMongoServiceTest {
         assertThat(restaurantMongoService).isNotNull();
     }
 
-    // @Test
-    // public void getRestaurantRepositorySuccess() throws Exception
-    // {
-    //     when(mockRestaurantMongoRepository.findAll()).thenReturn(mockRestaurantModelsIterable);
-    //     assertThat(restaurantMongoService.getRestaurantAll().size()).isNotNegative();
-    // }
+    @Test
+    public void getRestaurantRepositorySuccess() throws Exception
+    {
+        when(mockRestaurantMongoRepository.findAll()).thenReturn(mockRestaurantModels());
+        assertThat(restaurantMongoService.getRestaurantAll().size()).isNotNegative();
+    }
 
     @Test
     public void insertRestaurantAll() {
-        when(mockRestaurantMongoRepository.saveAll(mockRestaurantModels)).thenReturn(mockRestaurantModels);
-        assertThat(restaurantMongoService.insertRestaurantAll(mockRestaurantModels)).isNotNegative();
+        when(mockRestaurantMongoRepository.saveAll(mockRestaurantModels())).thenReturn(mockRestaurantModels());
+        assertThat(restaurantMongoService.insertRestaurantAll(mockRestaurantModels())).isNotNegative();
     }
 }
