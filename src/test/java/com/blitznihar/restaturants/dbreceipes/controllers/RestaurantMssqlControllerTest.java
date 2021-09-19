@@ -1,8 +1,8 @@
 package com.blitznihar.restaturants.dbreceipes.controllers;
 
-import com.blitznihar.restaturants.dbreceipes.entities.nosql.AddressModel;
-import com.blitznihar.restaturants.dbreceipes.entities.nosql.RestaurantModel;
-import com.blitznihar.restaturants.dbreceipes.services.RestaurantMongoService;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.AddressModel;
+import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
+import com.blitznihar.restaturants.dbreceipes.services.RestaurantMssqlService;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,14 +18,14 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 
 
-@WebMvcTest(RestaurantMongoController.class)
-public class RestaurantMongoControllerTest {
+@WebMvcTest(RestaurantMssqlController.class)
+public class RestaurantMssqlControllerTest {
 
     @Autowired
-    private RestaurantMongoController restaurantMongoController;
+    private RestaurantMssqlController restaurantMssqlController;
     
     @MockBean
-    private RestaurantMongoService restaurantMongoService;
+    private RestaurantMssqlService restaurantMssqlService;
 
     @MockBean
     private List<RestaurantModel> mockRestaurantModels;
@@ -42,23 +42,23 @@ public class RestaurantMongoControllerTest {
     @Test
     public void restaurantMongoControllerIsNotNull() throws Exception
     {
-        assertThat(restaurantMongoController).isNotNull();
+        assertThat(restaurantMssqlController).isNotNull();
     }
 
     @Test
     public void getRestaurantMongoControllerSuccess() throws Exception
     {
         //when(mockRestaurantMongoRepository.findAll()).thenReturn(mockRestaurantModels);
-        when(restaurantMongoService.getRestaurantAll()).thenReturn(mockRestaurantModels);
-        assertEquals(restaurantMongoController.getRestaturants(), mockRestaurantModels);
+        when(restaurantMssqlService.getRestaurantAll()).thenReturn(mockRestaurantModels);
+        assertEquals(restaurantMssqlController.getRestaturants(), mockRestaurantModels);
     }
 
     @Test
     public void get_restaurantMongoController_Success() throws Exception
     {
-        when(restaurantMongoService.getRestaurantAll()).thenReturn(mockRestaurantModels());
+        when(restaurantMssqlService.getRestaurantAll()).thenReturn(mockRestaurantModels());
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/mongo/restaurant"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/mssql/restaurant"))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
         .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Wendys"))
@@ -72,8 +72,8 @@ public class RestaurantMongoControllerTest {
     @Test
     public void insertRestaurantAll() throws Exception {
         //when(mockRestaurantMongoRepository.saveAll(mockRestaurantModels)).thenReturn(mockRestaurantModels);
-        when(restaurantMongoService.insertRestaurantAll(mockRestaurantModels)).thenReturn(0);
-        mockMvc.perform(MockMvcRequestBuilders.get("/mongo/restaurant"))
+        when(restaurantMssqlService.insertRestaurantAll(mockRestaurantModels)).thenReturn(0);
+        mockMvc.perform(MockMvcRequestBuilders.get("/mssql/restaurant"))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.content().string("[]"));
     }
