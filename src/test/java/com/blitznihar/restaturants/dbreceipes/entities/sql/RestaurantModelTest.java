@@ -8,6 +8,14 @@ public class RestaurantModelTest {
                 new AddressModel("Flatbush Avenue","469","11225")
                 );
     }
+    public RestaurantModel createEmptyRestaurantModelTestSuite() {
+        return new RestaurantModel();
+    }
+    public RestaurantModel createEmptyAddressModelTestSuite() {
+        return new RestaurantModel("Wendys","Hamburgers","Brooklyn",
+        new AddressModel()
+        );
+    }
 
     @Test
     public void test_get_restaurant_id() throws Exception {
@@ -40,4 +48,20 @@ public class RestaurantModelTest {
                                 .isEqualTo("11225");
 
     }
+
+    @Test
+    public void test_get_empty_restaurant() throws Exception {
+        RestaurantModel restaurantModel = createEmptyRestaurantModelTestSuite();
+        assertThat(restaurantModel)
+                                 .isNotNull();
+    }
+    @Test
+    public void test_get_empty_address() throws Exception {
+        RestaurantModel restaurantModel = createEmptyAddressModelTestSuite();
+        assertThat(restaurantModel)
+                                 .isNotNull();
+                                 assertThat(restaurantModel.getAddress())
+                                 .isNotNull();
+    }
+
 }
