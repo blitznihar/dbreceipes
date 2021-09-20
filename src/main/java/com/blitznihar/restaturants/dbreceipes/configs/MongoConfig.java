@@ -18,13 +18,14 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
   
   @Override
   protected String getDatabaseName() {
-      return "sample_restaurants";
+      return "restaurantdb";
   }
-
+  
   @Override
   public MongoClient mongoClient() {
-      ConnectionString connectionString = new ConnectionString("mongodb+srv://mongoadmin:i1tUUhLQ9CFgdGtg@cluster0.kg6sb.mongodb.net/sample_restaurants?retryWrites=true&w=majority");
-      
+      ConnectionString connectionString 
+      = new ConnectionString("mongodb://admin:password@localhost:27017/?authSource=admin&readPreference=primary&ssl=false");
+      //= new ConnectionString("mongodb+srv://mongoadmin:i1tUUhLQ9CFgdGtg@cluster0.kg6sb.mongodb.net/sample_restaurants?retryWrites=true&w=majority");
       
       MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
           .applyConnectionString(connectionString)

@@ -50,13 +50,6 @@ public class H2Config {
                 .setName("Restaurant")
                 .addDefaultScripts()
                 .build();
-       // final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        // dataSource.setDriverClassName("org.h2.Driver");
-        // dataSource.setUrl("jdbc:h2:mem:test");
-        // dataSource.setUsername("admin");
-        // dataSource.setPassword("admin");
-        // dataSource.add
-        // return dataSource;
     }
     @Primary
     @Bean
