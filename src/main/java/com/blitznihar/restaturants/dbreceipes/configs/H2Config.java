@@ -6,9 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -20,39 +23,40 @@ public class H2Config {
     public H2Config() {
         super();
     }
+    @Bean
+	public JpaVendorAdapter jpaVendorAdapter() {
+		HibernateJpaVendorAdapter bean = new HibernateJpaVendorAdapter();
+		bean.setDatabase(Database.H2);
+		bean.setGenerateDdl(true);
+        bean.setShowSql(true);
+		return bean;
+	}
     @Primary
     @Bean
     public LocalContainerEntityManagerFactoryBean h2EntityManager(){
-		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(h2DataSource());
 		em.setPackagesToScan(new String[] {"com.blitznihar.restaturants.dbreceipes.entities.sql"});
-		em.setJpaVendorAdapter(vendorAdapter);
-		em.setPersistenceUnitName("restaurant");
-
+		em.setJpaVendorAdapter(jpaVendorAdapter());
 		return em;
 	}
-    // public LocalContainerEntityManagerFactoryBean h2EntityManager() {
-    //     final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-    //     em.setDataSource(h2DataSource());
-    //     em.setPackagesToScan("com.blitznihar.restaturants.dbreceipes.entities.sql");
-
-    //     final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-    //     em.setJpaVendorAdapter(vendorAdapter);
-
-    //     return em;
-    // }
 
     @Primary
     @Bean
     public DataSource h2DataSource() 
     {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:mem:test");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
-        return dataSource;
+        return new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .setName("Restaurant")
+                .addDefaultScripts()
+                .build();
+       // final DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        // dataSource.setDriverClassName("org.h2.Driver");
+        // dataSource.setUrl("jdbc:h2:mem:test");
+        // dataSource.setUsername("admin");
+        // dataSource.setPassword("admin");
+        // dataSource.add
+        // return dataSource;
     }
     @Primary
     @Bean
