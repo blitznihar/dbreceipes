@@ -5,7 +5,7 @@ public class ConfigurationConstants {
     public static final String PACKAGES_TO_SCAN = "com.blitznihar.restaturants.dbreceipes.entities.sql";
 
     
-    public static final String CLASSPATH_DATABASE_PROPERTIES = "classpath:database.properties";
+    public static final String CLASSPATH_DATABASE_PROPERTIES = "classpath:database-${spring.profiles.active}.properties";
     public static final String COM_BLITZNIHAR_RESTATURANTS_DBRECEIPES = "com.blitznihar.restaturants.dbreceipes";
     
     
