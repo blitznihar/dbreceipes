@@ -1,19 +1,34 @@
 package com.blitznihar.restaturants.dbreceipes.configs;
 
 import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import com.blitznihar.restaturants.dbreceipes.constants.ConfigurationConstants;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.blitznihar.restaturants.dbreceipes.repositories.restaurantMysql",
-        entityManagerFactoryRef = "mysqlEntityManager", transactionManagerRef = "mysqlTransactionManager")
+@EnableJpaRepositories(basePackages = ConfigurationConstants.BASEPACKAGES_REPOSITORY_MYSQL, 
+                        entityManagerFactoryRef = ConfigurationConstants.MYSQL_ENTITY_MANAGER, 
+                        transactionManagerRef = ConfigurationConstants.MYSQL_TRANSACTION_MANAGER)
+@PropertySource(ConfigurationConstants.CLASSPATH_DATABASE_PROPERTIES)
 public class MysqlConfig {
+
+    @Value("${mssql.driverClassName}")
+    private String driverClassName;
+    @Value("${mssql.connectionstring}")
+    private String url;
+    @Value("${mssql.password}")
+    private String password;
+    @Value("${mssql.username}")
+    private String username;
 
     public MysqlConfig() {
         super();
@@ -23,7 +38,7 @@ public class MysqlConfig {
     public LocalContainerEntityManagerFactoryBean mysqlEntityManager() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(mysqlDataSource());
-        em.setPackagesToScan("com.blitznihar.restaturants.dbreceipes.entities.sql");
+        em.setPackagesToScan(ConfigurationConstants.PACKAGES_TO_SCAN);
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -34,10 +49,10 @@ public class MysqlConfig {
     public DataSource mysqlDataSource() 
     {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/Restaurant");
-        dataSource.setUsername("root");
-        dataSource.setPassword("4321~Drowssap");
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         return dataSource;
     }
 

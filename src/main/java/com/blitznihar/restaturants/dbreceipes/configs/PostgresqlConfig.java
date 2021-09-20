@@ -1,19 +1,33 @@
 package com.blitznihar.restaturants.dbreceipes.configs;
 
 import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-
+import com.blitznihar.restaturants.dbreceipes.constants.ConfigurationConstants;
 @Configuration
-@EnableJpaRepositories(basePackages = "com.blitznihar.restaturants.dbreceipes.repositories.restaurantPostgresql",
-        entityManagerFactoryRef = "postgresqlEntityManager", transactionManagerRef = "postgresqlTransactionManager")
+@EnableJpaRepositories(basePackages = ConfigurationConstants.BASEPACKAGES_REPOSITORY_POSTGRESQL, 
+                        entityManagerFactoryRef = ConfigurationConstants.POSTGRESQL_ENTITY_MANAGER, 
+                        transactionManagerRef = ConfigurationConstants.POSTGRESQL_TRANSACTION_MANAGER)
+@PropertySource(ConfigurationConstants.CLASSPATH_DATABASE_PROPERTIES)
 public class PostgresqlConfig {
+
+    @Value("${mssql.driverClassName}")
+    private String driverClassName;
+    @Value("${mssql.connectionstring}")
+    private String url;
+    @Value("${mssql.password}")
+    private String password;
+    @Value("${mssql.username}")
+    private String username;
 
     public PostgresqlConfig() {
         super();
@@ -23,7 +37,7 @@ public class PostgresqlConfig {
     public LocalContainerEntityManagerFactoryBean postgresqlEntityManager() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(postgresqlDataSource());
-        em.setPackagesToScan("com.blitznihar.restaturants.dbreceipes.entities.sql");
+        em.setPackagesToScan(ConfigurationConstants.PACKAGES_TO_SCAN);
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -35,10 +49,10 @@ public class PostgresqlConfig {
     public DataSource postgresqlDataSource() 
     {
         final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/restaurant");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("4321~Drowssap");
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         return dataSource;
     }
 

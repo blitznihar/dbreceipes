@@ -2,6 +2,7 @@ package com.blitznihar.restaturants.dbreceipes.controllers;
 
 import java.util.List;
 
+import com.blitznihar.restaturants.dbreceipes.constants.ControllerConstants;
 import com.blitznihar.restaturants.dbreceipes.entities.sql.RestaurantModel;
 import com.blitznihar.restaturants.dbreceipes.services.RestaurantMysqlService;
 
@@ -13,21 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/mysql")
+@RequestMapping(ControllerConstants.MYSQL)
 public class RestaurantMysqlController {
 
     @Autowired
     public RestaurantMysqlService restaurantMysqlService;
 
-    @GetMapping("/restaurant")
+    @GetMapping(ControllerConstants.RESTAURANT)
     public List<RestaurantModel> getRestaturants(){
 
         return restaurantMysqlService.getRestaurantAll();
     }
 
-    @PostMapping("/restaurant")
+    @PostMapping(ControllerConstants.RESTAURANT)
     public String insertRestaturants(@RequestBody List<RestaurantModel> restaurantModels){
-         return "Records Inserted: "+restaurantMysqlService.insertRestaurantAll(restaurantModels);
+         return ControllerConstants.RECORDS_INSERTED+restaurantMysqlService.insertRestaurantAll(restaurantModels);
 
     }
     
