@@ -52,7 +52,11 @@
 * [x] @Component, @Repository, @Controller
 * [x] Scope Types: Singleton/prototype
 * [x] @Autowired
-* [ ] @Configuration
+* [x] @Configuration
+* [x] @PropertySource
+* [x] Externalize Configuration
+* [x] Active Profile
+* [x] DRY
 
 #### Spring MVC REST
 * [x] Rest API - Get, Post
@@ -63,14 +67,25 @@
 * [x] Starter Projects
 * [x] Actuator
 * [x] Spring docs/Spring fox - Swagger Documnentation
-* [ ] Application config
+* [x] Application config
 * [ ] Logging
 
 
 
 #### Spring Test
 * [x] Basic Test
+* [x] Unit Test
+    * [x] Slice Testing
+    * [x] @DataJPATest
+    * [x] @DataMongoTest
+    * [x] @WebMvcTest
+        * [x] MockMvcTest
 * [x] Mockito
+    * [x] @Mock
+    * [x] @MockBean
+    * [x] @Test
+    * [x] @InjectMock
+    * [x] @ExtendWith
 * [ ] Integration Test
 * [ ] Cucumber Testing
 * [ ] Postman Testing
