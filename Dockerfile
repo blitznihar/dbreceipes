@@ -6,4 +6,6 @@ ARG PROPERTIES_FILE=target/classes/*.properties
 ARG SQL_FILE=target/classes/*.sql
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
+EXPOSE 7109
+EXPOSE 6109
 #java -jar ./target/dbreceipes-1.3.1-SNAPSHOT.jar --spring.config.location=./target/classes/application-prod.properties,./target/classes/database.properties

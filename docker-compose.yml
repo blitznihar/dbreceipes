@@ -9,6 +9,7 @@ services:
       - ./.setup/data/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
       - ./.setup/data/create-mongo-user.js:/tmp/create-mongo-user.js
       - ./.setup/data/sampledata-restaurant.json:/tmp/sampledata-restaurant.json
+    command: ["--bind_ip","0.0.0.0"]
   mysqlvirt:
     image: mysql
     container_name: mysqlvirt
@@ -20,11 +21,12 @@ services:
     platform: linux/x86_64
     volumes:
       - ./.setup/data/mysql-restaurant.~sql:/docker-entrypoint-initdb.d/mysql-restaurant.sql
+    #command: ["--bind_ip","0.0.0.0"]
   mssqlvirt:
     image: mcr.microsoft.com/azure-sql-edge
     container_name: mssqlvirt
     ports:
-      - "1434:1433"
+      - "14333:1433"
     environment:
       MSSQL_SA_PASSWORD: 4321~Drowssap
       MSSQL_PID: Developer
@@ -33,6 +35,7 @@ services:
     volumes:
       - ./.setup/data/mssql-restaurant.~sql:/docker-entrypoint-initdb.d/mssql-restaurant.sql
       - /Volumes/D/Workspace/Docker/vol/mssql:/var/opt/mssql
+    #command: ["--bind_ip","0.0.0.0"]
   postgresqlvirt:
     image: postgres
     container_name: postgresqlvirt
@@ -43,12 +46,21 @@ services:
       MYSQL_DATABASE: Restaurant
     volumes:
       - ./.setup/data/postgres-restaurant.~sql:/docker-entrypoint-initdb.d/postgres-restaurant.sql
+    #command: ["--bind_ip","0.0.0.0"]
   api:
     build: .
     container_name: dbreceipesapi
     ports:
       - "7109:7109"
       - "6109:6109"
+    depends_on: 
+      - mongovirt
+      - mysqlvirt
+      - mssqlvirt
+      - postgresqlvirt
+  api-image:
+    image: nginx
+    container_name: dbreceipesapi-test
     depends_on: 
       - mongovirt
       - mysqlvirt
