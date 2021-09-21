@@ -1,0 +1,56 @@
+version: "3.9"
+services:
+  mongovirt:
+    image: mongo:latest
+    container_name: mongovirt
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./.setup/data/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
+      - ./.setup/data/create-mongo-user.js:/tmp/create-mongo-user.js
+      - ./.setup/data/sampledata-restaurant.json:/tmp/sampledata-restaurant.json
+  mysqlvirt:
+    image: mysql
+    container_name: mysqlvirt
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 4321~Drowssap
+      MYSQL_DATABASE: Restaurant
+    platform: linux/x86_64
+    volumes:
+      - ./.setup/data/mysql-restaurant.~sql:/docker-entrypoint-initdb.d/mysql-restaurant.sql
+  mssqlvirt:
+    image: mcr.microsoft.com/azure-sql-edge
+    container_name: mssqlvirt
+    ports:
+      - "1434:1433"
+    environment:
+      MSSQL_SA_PASSWORD: 4321~Drowssap
+      MSSQL_PID: Developer
+      MSSQL_USER: SA
+      ACCEPT_EULA: 1
+    volumes:
+      - ./.setup/data/mssql-restaurant.~sql:/docker-entrypoint-initdb.d/mssql-restaurant.sql
+      - /Volumes/D/Workspace/Docker/vol/mssql:/var/opt/mssql
+  postgresqlvirt:
+    image: postgres
+    container_name: postgresqlvirt
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: 4321~Drowssap
+      MYSQL_DATABASE: Restaurant
+    volumes:
+      - ./.setup/data/postgres-restaurant.~sql:/docker-entrypoint-initdb.d/postgres-restaurant.sql
+  api:
+    build: .
+    container_name: dbreceipesapi
+    ports:
+      - "7109:7109"
+      - "6109:6109"
+    depends_on: 
+      - mongovirt
+      - mysqlvirt
+      - mssqlvirt
+      - postgresqlvirt
