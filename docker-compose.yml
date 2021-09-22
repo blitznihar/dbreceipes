@@ -3,8 +3,10 @@ services:
   mongovirt:
     image: mongo:latest
     container_name: mongovirt
+    hostname: mongovirt
+    restart: unless-stopped
     ports:
-      - "27018:27017"
+      - "27017:27017"
     volumes:
       - ./.setup/data/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
       - ./.setup/data/create-mongo-user.js:/tmp/create-mongo-user.js
@@ -13,8 +15,10 @@ services:
   mysqlvirt:
     image: mysql
     container_name: mysqlvirt
+    hostname: mysqlvirt
+    restart: unless-stopped
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: 4321~Drowssap
       MYSQL_DATABASE: Restaurant
@@ -25,8 +29,10 @@ services:
   mssqlvirt:
     image: mcr.microsoft.com/azure-sql-edge
     container_name: mssqlvirt
+    hostname: mssqlvirt
+    restart: unless-stopped
     ports:
-      - "14333:1433"
+      - "1433:1433"
     environment:
       MSSQL_SA_PASSWORD: 4321~Drowssap
       MSSQL_PID: Developer
@@ -39,8 +45,10 @@ services:
   postgresqlvirt:
     image: postgres
     container_name: postgresqlvirt
+    hostname: postgresqlvirt
+    restart: unless-stopped
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: 4321~Drowssap
       MYSQL_DATABASE: Restaurant
@@ -50,6 +58,8 @@ services:
   api:
     build: .
     container_name: dbreceipesapi
+    hostname: dbreceipesapi
+    restart: unless-stopped
     ports:
       - "7109:7109"
       - "6109:6109"
@@ -58,11 +68,11 @@ services:
       - mysqlvirt
       - mssqlvirt
       - postgresqlvirt
-  api-image:
-    image: nginx
-    container_name: dbreceipesapi-test
-    depends_on: 
-      - mongovirt
-      - mysqlvirt
-      - mssqlvirt
-      - postgresqlvirt
+  # api-image:
+  #   image: nginx
+  #   container_name: dbreceipesapi-test
+  #   depends_on: 
+  #     - mongovirt
+  #     - mysqlvirt
+  #     - mssqlvirt
+  #     - postgresqlvirt
